@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Runner
   - Taya
+  - Ground
   layers:
   - Default
   - TransparentFX

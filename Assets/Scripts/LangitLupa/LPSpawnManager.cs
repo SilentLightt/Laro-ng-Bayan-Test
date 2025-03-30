@@ -4,8 +4,10 @@ using UnityEngine;
 public class LPSpawnManager : MonoBehaviour
 {
     public List<Transform> spawnPoints;
-    public List<GameObject> players;
+    public GameObject playerPrefab;
+    public int playerCount = 4;
     public LPRoleManager roleManager;
+    private List<GameObject> players = new List<GameObject>();
 
     private void Start()
     {
@@ -14,11 +16,12 @@ public class LPSpawnManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        if (players.Count == 0 || spawnPoints.Count == 0) return;
+        if (playerPrefab == null || spawnPoints.Count == 0) return;
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < playerCount; i++)
         {
-            players[i].transform.position = spawnPoints[i % spawnPoints.Count].position;
+            GameObject newPlayer = Instantiate(playerPrefab, spawnPoints[i % spawnPoints.Count].position, Quaternion.identity);
+            players.Add(newPlayer);
         }
 
         AssignFirstTaya();
@@ -29,7 +32,7 @@ public class LPSpawnManager : MonoBehaviour
         if (players.Count > 0)
         {
             int randomIndex = UnityEngine.Random.Range(0, players.Count);
-            roleManager.SwitchRoles(players[randomIndex]);
+            roleManager.InitializeRoles(players, players[randomIndex]);
         }
     }
 }

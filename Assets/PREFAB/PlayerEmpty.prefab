@@ -121,9 +121,10 @@ GameObject:
   - component: {fileID: 8460696365758502929}
   - component: {fileID: 6936550085254094232}
   - component: {fileID: 3494458622888681556}
+  - component: {fileID: 7289433143332227104}
   m_Layer: 0
   m_Name: PlayerEmpty
-  m_TagString: Player
+  m_TagString: Runner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 6220193835190757431}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.67478925, z: -0, w: 0.73801047}
-  m_LocalPosition: {x: 59.74, y: 2.048, z: 47.14}
+  m_LocalPosition: {x: 46.37, y: 3.21, z: 54.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -245,3 +246,15 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7289433143332227104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6220193835190757431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef14fdc79d26f654ca0e74f310830c6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

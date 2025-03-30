@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 
@@ -6,7 +6,6 @@ public interface ITaggable
 {
     void OnTagged();
 }
-
 public class LPTagger : MonoBehaviour
 {
     public float tagRange = 2f;
@@ -15,6 +14,12 @@ public class LPTagger : MonoBehaviour
     private float tagCooldown = 2f;
 
     public event Action<GameObject> OnTagSuccess;
+    public LPUIManager uiManager; // Assign in Inspector
+
+    private void Start()
+    {
+        OnTagSuccess += (taggedObject) => uiManager.ShowTagAlert($"Tagged: {taggedObject.name}!");
+    }
 
     private void Update()
     {
@@ -35,6 +40,7 @@ public class LPTagger : MonoBehaviour
         {
             if (hit.gameObject.TryGetComponent<ITaggable>(out ITaggable taggable))
             {
+                Debug.Log($"Tagged: {hit.gameObject.name}");
                 taggable.OnTagged();
                 OnTagSuccess?.Invoke(hit.gameObject);
                 StartCoroutine(TagCooldown());

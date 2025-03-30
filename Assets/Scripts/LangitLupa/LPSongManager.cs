@@ -16,7 +16,7 @@ public class LPSongManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 7f));
+            yield return new WaitForSeconds(7f);
             PlayChant();
             OnChantTrigger?.Invoke();
         }

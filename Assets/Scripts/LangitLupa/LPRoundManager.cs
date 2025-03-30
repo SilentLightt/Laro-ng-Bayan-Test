@@ -9,6 +9,8 @@ public class LPRoundManager : MonoBehaviour
     public event Action OnRoundStart;
     public event Action OnRoundEnd;
 
+    public LPUIManager uiManager; 
+
     private void Start()
     {
         StartRound();
@@ -19,6 +21,8 @@ public class LPRoundManager : MonoBehaviour
         if (roundActive)
         {
             timeRemaining -= Time.deltaTime;
+            uiManager.UpdateRoundTimer(timeRemaining); 
+
             if (timeRemaining <= 0)
             {
                 EndRound();
@@ -31,11 +35,13 @@ public class LPRoundManager : MonoBehaviour
         timeRemaining = roundDuration;
         roundActive = true;
         OnRoundStart?.Invoke();
+        uiManager.UpdateRoundTimer(timeRemaining); 
     }
 
     private void EndRound()
     {
         roundActive = false;
         OnRoundEnd?.Invoke();
+        uiManager.UpdateRoundTimer(0);
     }
 }
