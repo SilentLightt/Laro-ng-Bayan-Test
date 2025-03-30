@@ -4,6 +4,8 @@ public interface IMovementInput
 {
     Vector2 GetMovementInput();
     bool IsSprinting();
+    bool IsJumping();
+
 }
 
 public interface IMovable
@@ -21,15 +23,26 @@ public class PlayerMovement : MonoBehaviour, IMovable
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float sprintMultiplier = 1.5f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 2f; // Jump strength
 
+    [SerializeField] private Transform groundCheck; // Empty object at player's feet
+    [SerializeField] private float groundDistance = 0.2f; // Ground detection distance
+    [SerializeField] private LayerMask groundMask; // Layer(s) considered as ground
+
+    private bool isGrounded;
     private Vector3 velocity;
-
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        movementInput = new KeyboardMovementInputHandler();
 
-        // Automatically find CameraFolloww in the scene
+        // Try to find any movement input component (WASD or Arrow Keys)
+        movementInput = GetComponent<IMovementInput>();
+
+        if (movementInput == null)
+        {
+            Debug.LogError("No IMovementInput found! Attach WASDMovementHandler or ArrowKeyMovementHandler.");
+        }
+
         cameraFolloww = FindFirstObjectByType<CameraFolloww>();
 
         if (cameraFolloww == null)
@@ -38,12 +51,37 @@ public class PlayerMovement : MonoBehaviour, IMovable
         }
     }
 
+    //private void Awake()
+    //{
+    //    characterController = GetComponent<CharacterController>();
+    //    movementInput = new KeyboardHandler();
+
+    //    // Automatically find CameraFolloww in the scene
+    //    cameraFolloww = FindFirstObjectByType<CameraFolloww>();
+
+    //    if (cameraFolloww == null)
+    //    {
+    //        Debug.LogError("CameraFolloww script not found! Player movement may not work as expected.");
+    //    }
+    //}
+
     private void Update()
     {
         Move();
         ApplyGravity();
-    }
+        GroundCheck();
 
+    }
+    private void GroundCheck()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        // Reset downward velocity when on the ground
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+    }
     public void Move()
     {
         Vector2 input = movementInput.GetMovementInput();
@@ -55,20 +93,17 @@ public class PlayerMovement : MonoBehaviour, IMovable
                                      cameraFolloww.GetCameraRight() * input.x).normalized;
             characterController.Move(moveDirection * speed * Time.deltaTime);
         }
+        if (movementInput.IsJumping() && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
     }
 
     private void ApplyGravity()
     {
-        if (characterController.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        else
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
-
+        velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+
     }
 
     public void SetMovementInput(IMovementInput newInput)
@@ -76,69 +111,3 @@ public class PlayerMovement : MonoBehaviour, IMovable
         movementInput = newInput;
     }
 }
-
-
-//using UnityEngine;
-
-//public interface IMovementInput
-//{
-//    Vector2 GetMovementInput();
-//    bool IsSprinting();
-//}
-
-//public interface IMovable
-//{
-//    void Move();
-//}
-
-//[RequireComponent(typeof(CharacterController))]
-//public class PlayerMovement : MonoBehaviour, IMovable
-//{
-//    private CharacterController characterController;
-//    private IMovementInput movementInput;
-
-//    [SerializeField] private float moveSpeed = 5f;
-//    [SerializeField] private float sprintMultiplier = 1.5f;
-//    [SerializeField] private float gravity = -9.81f;
-//    private Vector3 velocity;
-
-//    private void Awake()
-//    {
-//        characterController = GetComponent<CharacterController>();
-//        movementInput = new KeyboardMovementInputHandler();
-//    }
-
-//    private void Update()
-//    {
-//        Move();
-//        ApplyGravity();
-//    }
-
-//    public void Move()
-//    {
-//        Vector2 input = movementInput.GetMovementInput();
-//        float speed = moveSpeed * (movementInput.IsSprinting() ? sprintMultiplier : 1f);
-
-//        Vector3 moveDirection = new Vector3(input.x, 0, input.y).normalized;
-//        characterController.Move(moveDirection * speed * Time.deltaTime);
-//    }
-
-//    private void ApplyGravity()
-//    {
-//        if (characterController.isGrounded && velocity.y < 0)
-//        {
-//            velocity.y = -2f;
-//        }
-//        else
-//        {
-//            velocity.y += gravity * Time.deltaTime;
-//        }
-
-//        characterController.Move(velocity * Time.deltaTime);
-//    }
-
-//    public void SetMovementInput(IMovementInput newInput)
-//    {
-//        movementInput = newInput;
-//    }
-//}

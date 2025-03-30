@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class KeyboardMovementInputHandler : IMovementInput
+public class KeyboardHandler : IMovementInput
 {
     private KeyCode sprintKey = KeyCode.LeftShift;
+    private KeyCode jumpKey = KeyCode.Space;
 
     public Vector2 GetMovementInput()
     {
@@ -14,5 +15,10 @@ public class KeyboardMovementInputHandler : IMovementInput
     public bool IsSprinting()
     {
         return Input.GetKey(sprintKey);
+    }
+
+    public bool IsJumping()
+    {
+        return Input.GetKeyDown(jumpKey);
     }
 }
