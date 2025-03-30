@@ -611,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.262184, y: 4.1, z: 34.02}
+  m_LocalPosition: {x: 48.262184, y: 4.1, z: 30.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2210,7 +2210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db6cb694ba7e0441af245d89a5e5f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTaya: {fileID: 3042656449724850333, guid: e54c5ac9097ee8a4d9eb1b07c4ee4b2b, type: 3}
+  currentTaya: {fileID: 0}
   runners:
   - {fileID: 6220193835190757431, guid: 377b1bd20640fc549b5500cd8fa6fd04, type: 3}
 --- !u!1 &1531343127
@@ -2722,7 +2722,7 @@ MonoBehaviour:
   - {fileID: 1005421215}
   - {fileID: 750105489}
   - {fileID: 1640959353}
-  playerPrefab: {fileID: 6220193835190757431, guid: 377b1bd20640fc549b5500cd8fa6fd04, type: 3}
+  playerPrefab: {fileID: 2790247194224427501, guid: 3f1ce81b7c07f504ca35b8350927dc63, type: 3}
   playerCount: 4
   roleManager: {fileID: 1493662335}
 --- !u!1 &1821942437
@@ -3520,6 +3520,7 @@ GameObject:
   - component: {fileID: 8568667374848887924}
   - component: {fileID: 3761105981347664259}
   - component: {fileID: 8568667374848887925}
+  - component: {fileID: 8568667374848887926}
   m_Layer: 0
   m_Name: PlayerLPWASD
   m_TagString: Taya
@@ -4316,7 +4317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagRange: 2
   tagKey: 101
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 593005256}
 --- !u!33 &8269122082571107982
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4414,12 +4415,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3042656450028034979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90099a382474bc9479c5146479398733, type: 3}
+  m_Script: {fileID: 11500000, guid: 25654dc73b99c824a952495b4b501264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagRange: 4.58
+  tagRange: 2
   tagKey: 101
-  uiManager: {fileID: 593005256}
+--- !u!114 &8568667374848887926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042656450028034979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0ad0cdc5bbdcf45b27b39e60afdced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentRole: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

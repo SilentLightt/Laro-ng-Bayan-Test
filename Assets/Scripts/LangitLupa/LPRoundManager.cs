@@ -14,6 +14,7 @@ public class LPRoundManager : MonoBehaviour
     private void Start()
     {
         StartRound();
+        uiManager = FindFirstObjectByType<LPUIManager>();
     }
 
     private void Update()

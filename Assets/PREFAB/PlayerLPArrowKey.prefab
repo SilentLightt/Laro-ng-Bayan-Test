@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 4019899376373811233}
   - component: {fileID: 8367117684273047546}
   - component: {fileID: 1090061046905909050}
+  - component: {fileID: 7537521164561868695}
   m_Layer: 0
   m_Name: PlayerLPArrowKey
   m_TagString: Taya
@@ -281,6 +282,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced5057f7990c6644be8fbb73307d0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7537521164561868695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790247194224427501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0ad0cdc5bbdcf45b27b39e60afdced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentRole: 1
 --- !u!1 &4007816511894940380
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1638880051232751019
 Transform:
   m_ObjectHideFlags: 0

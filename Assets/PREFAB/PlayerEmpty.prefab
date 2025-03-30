@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 8460696365758502929}
   - component: {fileID: 6936550085254094232}
   - component: {fileID: 3494458622888681556}
-  - component: {fileID: 7289433143332227104}
+  - component: {fileID: 5671521176978767598}
   m_Layer: 0
   m_Name: PlayerEmpty
   m_TagString: Runner
@@ -246,7 +246,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7289433143332227104
+--- !u!114 &5671521176978767598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,6 +255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6220193835190757431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef14fdc79d26f654ca0e74f310830c6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0ad0cdc5bbdcf45b27b39e60afdced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentRole: 1
