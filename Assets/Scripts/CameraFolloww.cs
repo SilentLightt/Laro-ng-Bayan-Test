@@ -47,9 +47,19 @@ public class CameraFolloww : MonoBehaviour
         }
     }
 
-    public bool IsFirstPerson()
+    // New Methods to Provide Movement Direction
+    public Vector3 GetCameraForward()
     {
-        return isFirstPerson;
+        Vector3 forward = transform.forward;
+        forward.y = 0; // Ignore vertical tilt for movement
+        return forward.normalized;
+    }
+
+    public Vector3 GetCameraRight()
+    {
+        Vector3 right = transform.right;
+        right.y = 0;
+        return right.normalized;
     }
 
     public void ToggleCameraMode()
@@ -57,6 +67,7 @@ public class CameraFolloww : MonoBehaviour
         isFirstPerson = !isFirstPerson;
     }
 }
+
 
 //using UnityEngine;
 
