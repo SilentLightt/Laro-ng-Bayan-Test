@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IMovementInput
+public interface IMovementInputt
 {
     Vector2 GetMovementInput();
     bool IsSprinting();
@@ -8,16 +8,16 @@ public interface IMovementInput
 
 }
 
-public interface IMovable
+public interface IMovablee
 {
     void Move();
 }
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerMovement : MonoBehaviour, IMovable
+public class PlayerMovement1 : MonoBehaviour, IMovablee
 {
     private CharacterController characterController;
-    private IMovementInput movementInput;
+    private IMovementInputt movementInput;
     private CameraFolloww cameraFolloww;
 
     [SerializeField] private float moveSpeed = 5f;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
         characterController = GetComponent<CharacterController>();
 
         // Try to find any movement input component (WASD or Arrow Keys)
-        movementInput = GetComponent<IMovementInput>();
+        movementInput = GetComponent<IMovementInputt>();
 
         if (movementInput == null)
         {
@@ -51,6 +51,19 @@ public class PlayerMovement : MonoBehaviour, IMovable
         }
     }
 
+    //private void Awake()
+    //{
+    //    characterController = GetComponent<CharacterController>();
+    //    movementInput = new KeyboardHandler();
+
+    //    // Automatically find CameraFolloww in the scene
+    //    cameraFolloww = FindFirstObjectByType<CameraFolloww>();
+
+    //    if (cameraFolloww == null)
+    //    {
+    //        Debug.LogError("CameraFolloww script not found! Player movement may not work as expected.");
+    //    }
+    //}
 
     private void Update()
     {
@@ -93,7 +106,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
 
     }
 
-    public void SetMovementInput(IMovementInput newInput)
+    public void SetMovementInput(IMovementInputt newInput)
     {
         movementInput = newInput;
     }

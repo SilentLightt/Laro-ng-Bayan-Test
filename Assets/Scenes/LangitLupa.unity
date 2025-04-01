@@ -3419,15 +3419,16 @@ GameObject:
   - component: {fileID: 5716580081753405088}
   - component: {fileID: 2451131573777475436}
   - component: {fileID: 3630178190388947425}
-  - component: {fileID: 8193331713010058810}
   - component: {fileID: 759378000738422522}
+  - component: {fileID: 8193331713010058812}
+  - component: {fileID: 8193331713010058811}
   m_Layer: 0
   m_Name: PlayerLPArrowKey
-  m_TagString: Taya
+  m_TagString: Runner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &3010324743738132148
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3629,7 +3630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &3630178190388947425
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3877,6 +3878,7 @@ GameObject:
   - component: {fileID: 7816077393359257655}
   - component: {fileID: 6799826839089864516}
   - component: {fileID: 3932082384637917966}
+  - component: {fileID: 7816077393359257656}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4191,6 +4193,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558218137282276091}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7816077393359257656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558218137282276091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f0ad0cdc5bbdcf45b27b39e60afdced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentRole: 0
 --- !u!33 &7906052432951083828
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4214,7 +4229,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 721037269141098905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8193331713010058810
+--- !u!114 &8193331713010058811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4223,7 +4238,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2526948139073839149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d089f6421b9760b4cb0d1eb1a924f46f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0ad0cdc5bbdcf45b27b39e60afdced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentRole: 1
+--- !u!114 &8193331713010058812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526948139073839149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe96881c99d884aa5ca7abafe122c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5

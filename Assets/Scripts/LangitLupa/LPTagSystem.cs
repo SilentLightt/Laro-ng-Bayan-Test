@@ -45,5 +45,9 @@ public class LPTagSystem : MonoBehaviour
         // Add LPTagSystem to the new Taya
         newTaya.gameObject.AddComponent<LPTagSystem>();
     }
-  
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, tagRange);
+    }
 }

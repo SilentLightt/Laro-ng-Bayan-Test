@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowKeyHandler : MonoBehaviour, IMovementInput
+public class ArrowKeyHandler : MonoBehaviour, IMovementInputt
 {
     private KeyCode sprintKey = KeyCode.RightShift;
     private KeyCode jumpKey = KeyCode.Keypad0;
