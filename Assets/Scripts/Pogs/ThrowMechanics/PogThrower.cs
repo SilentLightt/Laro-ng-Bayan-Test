@@ -1,35 +1,36 @@
-using UnityEngine;
-using UnityEngine.UI;
 using ThrowMechanics;
+using UnityEngine;
+
 public class PogThrower : MonoBehaviour
 {
     [SerializeField] private GameObject pogPrefab;
     [SerializeField] private Transform throwOrigin;
     [SerializeField] private AimingSystem aimingSystem;
-    [SerializeField] private Button throwButton;
-    [SerializeField] private PowerMeterUI powerMeterUI; // UI component
+    [SerializeField] private PowerMeterUI powerMeterUI;
 
     private PowerMeter powerMeter;
     private IEffectiveForceCalculator forceCalculator;
     private bool isCharging = false;
-
-    public void Initialize(PowerMeter powerMeter, IEffectiveForceCalculator forceCalculator)
-    {
-        this.powerMeter = powerMeter;
-        this.forceCalculator = forceCalculator;
-    }
+    private bool hasThrown = false; 
 
     private void Awake()
     {
         powerMeter = new PowerMeter(chargeRate: 5f, maxCharge: 20f);
         forceCalculator = new DefaultForceCalculator();
-
-        throwButton.onClick.AddListener(OnThrowButtonClicked);
-        powerMeterUI.ResetSlider();
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCharging();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            ReleaseThrow();
+        }
+
         if (isCharging)
         {
             powerMeter.Charge(Time.deltaTime);
@@ -43,6 +44,7 @@ public class PogThrower : MonoBehaviour
     public void StartCharging()
     {
         isCharging = true;
+        hasThrown = false; 
     }
 
     public void ReleaseThrow()
@@ -55,6 +57,8 @@ public class PogThrower : MonoBehaviour
 
         float effectiveForce = forceCalculator.CalculateForce(playerForce, pogPower);
         ThrowPog(effectiveForce);
+
+        hasThrown = true; 
 
         powerMeterUI.ResetSlider();
     }
@@ -70,12 +74,13 @@ public class PogThrower : MonoBehaviour
             rb.AddForce(throwDirection.normalized * force, ForceMode.Impulse);
         }
     }
-
-    private void OnThrowButtonClicked()
+    public void ResetThrowFlag()
     {
-        if (!isCharging)
-            StartCharging();
-        else
-            ReleaseThrow();
+        hasThrown = false;
+    }
+
+    public bool HasThrown()
+    {
+        return hasThrown;
     }
 }
