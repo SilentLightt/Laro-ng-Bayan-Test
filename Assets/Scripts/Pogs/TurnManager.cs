@@ -19,6 +19,7 @@ public class TurnManager : MonoBehaviour
     private bool isPlayer1Turn = true;
     private bool isTurnActive = false;
     private float turnTimeRemaining;
+    private bool hasFlippedCoin = false;
 
     private void Start()
     {
@@ -38,6 +39,13 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
+    public void SetFirstPlayer(bool isPlayer1First)
+    {
+        isPlayer1Turn = isPlayer1First;
+        hasFlippedCoin = true;
+
+        StartNewTurn();
+    }
 
     private bool HasCurrentPlayerThrown()
     {
@@ -53,6 +61,7 @@ public class TurnManager : MonoBehaviour
 
     private void StartNewTurn()
     {
+        if (!hasFlippedCoin) return; 
         isTurnActive = true;
         turnTimeRemaining = turnTimeLimit;
         UpdateTurnUI();

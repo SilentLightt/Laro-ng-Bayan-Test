@@ -8,6 +8,8 @@ TagManager:
   - Taya
   - Ground
   - Langit
+  - Heads
+  - Tails
   layers:
   - Default
   - TransparentFX
