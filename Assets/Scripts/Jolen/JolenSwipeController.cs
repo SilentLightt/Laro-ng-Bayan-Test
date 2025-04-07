@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class SwipeController : MonoBehaviour
+public class JolenSwipeController : MonoBehaviour
 {
     //[SerializeField] private float throwForceMultiplier = 5f;
     [SerializeField] public bool isPlayer1;
     private float swipeStartTime;
+    [SerializeField] private JolenPowerMeter powerMeter; // Reference to the PowerMeter script
 
     private Rigidbody rb;
     private Vector2 startTouch;
@@ -13,7 +14,8 @@ public class SwipeController : MonoBehaviour
 
     private JolenTurnManager turnManager;
     private static bool hasSpawned = false;
-
+    [SerializeField] private float minForce = 5f;  // Minimum force
+    [SerializeField] private float maxForce = 20f; // Maximum force
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,6 +30,7 @@ public class SwipeController : MonoBehaviour
             FindFirstObjectByType<JolenSpawner>()?.Spawn();
             hasSpawned = true;
         }
+
     }
 
     private void OnDestroy()
@@ -37,7 +40,7 @@ public class SwipeController : MonoBehaviour
 
     private void Update()
     {
-        if (!IsMyTurn() || hasThrown) return;
+        if (!IsMyTurn() || hasThrown || IsPlayerMoving()) return;
 
         HandleMouseSwipe();
     }
@@ -45,6 +48,11 @@ public class SwipeController : MonoBehaviour
     private bool IsMyTurn()
     {
         return (isPlayer1 && turnManager.IsPlayerTurn) || (!isPlayer1 && !turnManager.IsPlayerTurn);
+    }
+
+    private bool IsPlayerMoving()
+    {
+        return rb.linearVelocity.magnitude > 0.1f; // Check if the player is still moving
     }
 
     private void HandleMouseSwipe()
@@ -69,16 +77,16 @@ public class SwipeController : MonoBehaviour
     {
         if (duration <= 0f) duration = 0.01f;
 
-        hasThrown = true; // Prevent more throws this turn
+        hasThrown = true; // Mark that the player has thrown
 
         Vector2 swipe = end - start;
         float swipeStrength = swipe.magnitude / duration;
         float dynamicForce = swipeStrength * 0.005f;
-
-        float minForce = 1f;
-        float maxForce = 20f;
         float clampedForce = Mathf.Clamp(dynamicForce, minForce, maxForce);
-
+        if (powerMeter != null)
+        {
+            powerMeter.SetPower(clampedForce);
+        }
         Camera cam = Camera.main;
         Vector3 cameraForward = cam.transform.forward;
         cameraForward.y = 0;
@@ -87,7 +95,7 @@ public class SwipeController : MonoBehaviour
         Vector3 forceDirection = (cameraForward * swipe.magnitude) + (Vector3.up * swipe.y);
         rb.AddForce(forceDirection.normalized * clampedForce, ForceMode.Impulse);
 
-        Invoke(nameof(EndTurn), 2f);
+        Invoke(nameof(EndTurn), 1f);
     }
 
     private void EndTurn()
@@ -97,7 +105,7 @@ public class SwipeController : MonoBehaviour
 
     private void ResetForNextTurn()
     {
-        hasThrown = false;
+        hasThrown = false; // Reset on turn end
     }
 }
 //this is dynamic, depending on the users swipe control.
