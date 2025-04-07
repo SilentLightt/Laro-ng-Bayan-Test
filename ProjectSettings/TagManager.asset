@@ -12,6 +12,8 @@ TagManager:
   - Tails
   - Player1
   - Player2
+  - JolenCircle
+  - Jolen
   layers:
   - Default
   - TransparentFX
