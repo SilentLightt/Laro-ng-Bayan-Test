@@ -12,6 +12,21 @@ public class InventoryManager : MonoBehaviour
     private IUpgradeService upgradeService;
     private IStarterPackProvider starterPackProvider;
     private InventoryUI inventoryUI;
+    public List<Pog> GetOwnedPogs()
+    {
+        return ownedPogs;
+    }
+    public void OpenStarterPack()
+    {
+        if (!starterPackProvider.HasStarterPackOpened())
+        {
+            List<Pog> starterPogs = starterPackProvider.GetStarterPack();
+            ownedPogs.AddRange(starterPogs);
+            starterPackProvider.MarkStarterPackOpened();
+            persistence.SaveInventory(ownedPogs);
+            Debug.Log("Starter pack opened!");
+        }
+    }
 
     public void Initialize(IInventoryPersistence persistence, IUpgradeService upgradeService, IStarterPackProvider starterPackProvider)
     {

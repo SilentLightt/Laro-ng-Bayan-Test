@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PogRarity { Common, Uncommon, Rare, Epic }
+[CreateAssetMenu(fileName = "New Pog", menuName = "Pogs/Pog")]
 
 [Serializable]
-public class Pog
+public class Pog : ScriptableObject
 {
     public string id;
     public PogRarity rarity;
