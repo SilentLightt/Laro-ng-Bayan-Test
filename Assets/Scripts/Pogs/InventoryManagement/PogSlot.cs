@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-//using TMPro;
+using TMPro;
 
 public class PogSlot : MonoBehaviour
 {
     [SerializeField] private Image pogIcon;
-    [SerializeField]  Text pogPower;
-    [SerializeField]  Text pogLevel;
+    [SerializeField] TextMeshProUGUI pogPower;
+    [SerializeField] TextMeshProUGUI pogLevel;
     private Pog pogData;
     private InventoryUI inventoryUI;
 

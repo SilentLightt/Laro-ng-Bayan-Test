@@ -670,6 +670,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &800757597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800757598}
+  - component: {fileID: 800757599}
+  m_Layer: 0
+  m_Name: JolenSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800757598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800757597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.7438536, y: 6.226437, z: -12.431834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800757599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800757597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56ebd0f4d99a7644a1d1961ddeb9066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jolenPrefab: {fileID: 6499666703297676428, guid: 01644ecfb0ab51a499f2d8d58dd5491e, type: 3}
+  squareArea: {fileID: 1839969750}
+  jolenCount: 5
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,6 +1009,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1749906909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749906911}
+  - component: {fileID: 1749906910}
+  m_Layer: 0
+  m_Name: TurnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1749906910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749906909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f2503cfb0f8e446bca6aca21fb3551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1749906911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749906909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.7438536, y: 6.226437, z: -12.431834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1839969746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,23 +1238,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &572732450743245053
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751922128256262189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67f757c9ca45c964998bcf9a4b716b70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwForceMultiplier: 10
-  isPlayerTurn: 1
-  squareArea: {fileID: 1839969750}
-  jolenPrefab: {fileID: 6499666703297676428, guid: 01644ecfb0ab51a499f2d8d58dd5491e, type: 3}
-  jolenCount: 5
 --- !u!33 &742112380029120673
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1205,8 +1279,8 @@ GameObject:
   - component: {fileID: 742112380029120673}
   - component: {fileID: 6931787169272597499}
   - component: {fileID: 3290042098656623229}
-  - component: {fileID: 572732450743245053}
   - component: {fileID: 4915218770664344013}
+  - component: {fileID: 6931787169272597500}
   m_Layer: 0
   m_Name: Jolen
   m_TagString: Untagged
@@ -1286,22 +1360,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6931787169272597500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751922128256262189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1ad423875842b4ea8390681c1c0647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForceMultiplier: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1064716480}
   - {fileID: 351160492}
   - {fileID: 410087041}
   - {fileID: 1981348781}
   - {fileID: 832575519}
   - {fileID: 758767885}
-  - {fileID: 602102524}
-  - {fileID: 1008456190}
-  - {fileID: 1951790563}
-  - {fileID: 1435200481}
   - {fileID: 929084786}
-  - {fileID: 1064716480}
+  - {fileID: 602102524}
   - {fileID: 330585546}
+  - {fileID: 1008456190}
   - {fileID: 517524069594530313}
+  - {fileID: 1951790563}
   - {fileID: 637272898}
+  - {fileID: 1435200481}
   - {fileID: 1839969750}
+  - {fileID: 800757598}
+  - {fileID: 1749906911}

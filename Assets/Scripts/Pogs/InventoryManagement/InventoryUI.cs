@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
+using TMPro;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform gridParent;
     [SerializeField] private GameObject pogSlotPrefab;
     [SerializeField] private GameObject pogDetailsPanel;
-    [SerializeField] private Text pogNameText;
-    [SerializeField] private Text pogPowerText;
-    [SerializeField] private Text pogRarityText;
-    [SerializeField] private Text upgradeProgressText;
+    [SerializeField] private TextMeshProUGUI pogNameText;
+    [SerializeField] private TextMeshProUGUI pogPowerText;
+    [SerializeField] private TextMeshProUGUI pogRarityText;
+    [SerializeField] private TextMeshProUGUI upgradeProgressText;
     [SerializeField] private Button closeButton;
     [SerializeField] private GameObject openStarterPackPanel;
     [SerializeField] private Button openPackButton;
