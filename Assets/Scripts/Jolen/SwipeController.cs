@@ -1,15 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class SwipeController : MonoBehaviour
 {
     [SerializeField] private float throwForceMultiplier = 10f;
+    [SerializeField] public bool isPlayer1; // Set in inspector or via script
 
     private Rigidbody rb;
     private Vector2 startTouch;
     private bool isDragging = false;
 
     private JolenTurnManager turnManager;
+    private static bool hasSpawned = false;
 
     private void Awake()
     {
@@ -19,14 +20,23 @@ public class SwipeController : MonoBehaviour
 
     private void Start()
     {
-        FindFirstObjectByType<JolenSpawner>()?.Spawn();
+        if (!hasSpawned)
+        {
+            FindFirstObjectByType<JolenSpawner>()?.Spawn();
+            hasSpawned = true;
+        }
     }
 
     private void Update()
     {
-        if (!turnManager.IsPlayerTurn) return;
+        if (!IsMyTurn()) return;
 
         HandleMouseSwipe();
+    }
+
+    private bool IsMyTurn()
+    {
+        return (isPlayer1 && turnManager.IsPlayerTurn) || (!isPlayer1 && !turnManager.IsPlayerTurn);
     }
 
     private void HandleMouseSwipe()
@@ -47,10 +57,19 @@ public class SwipeController : MonoBehaviour
     private void ThrowJolen(Vector2 start, Vector2 end)
     {
         Vector2 swipe = end - start;
-        Vector3 direction = new Vector3(swipe.x, swipe.y, swipe.magnitude);
-        rb.AddForce(direction.normalized * throwForceMultiplier, ForceMode.Impulse);
+
+        // Get forward direction from camera
+        Camera cam = Camera.main;
+        Vector3 cameraForward = cam.transform.forward;
+        cameraForward.y = 0; // Flatten to horizontal plane
+        cameraForward.Normalize();
+
+        Vector3 forceDirection = (cameraForward * swipe.magnitude) + (Vector3.up * swipe.y);
+        rb.AddForce(forceDirection.normalized * throwForceMultiplier, ForceMode.Impulse);
+
         Invoke(nameof(EndTurn), 2f);
     }
+
 
     private void EndTurn()
     {
