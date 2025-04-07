@@ -24,11 +24,14 @@ public class JolenPlayerManager : MonoBehaviour
         // Spawn Player 1 and Player 2
         player1 = Instantiate(playerPrefab, player1SpawnPoint.position, Quaternion.identity);
         player1.name = "Player1";
-
+        player1.GetComponent<JolenSwipeController>().isPlayer1 = true;
+        SetPlayerColor(player1, Color.blue); // Set Player 1 color
+       
         player2 = Instantiate(playerPrefab, player2SpawnPoint.position, Quaternion.identity);
         player2.name = "Player2";
-        player1.GetComponent<JolenSwipeController>().isPlayer1 = true;
         player2.GetComponent<JolenSwipeController>().isPlayer1 = false;
+        SetPlayerColor(player2, Color.red); // Set Player 2 color
+
         // Start camera on Player 1
         cameraFollow.SetTarget(player1.transform);
 
@@ -48,7 +51,14 @@ public class JolenPlayerManager : MonoBehaviour
             cameraFollow.SetTarget(player2.transform);
         }
     }
-
+    private void SetPlayerColor(GameObject player, Color color)
+    {
+        Renderer renderer = player.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.material.color = color;
+        }
+    }
     private void OnDestroy()
     {
         JolenTurnManager.OnTurnEnd -= OnTurnEnd;
