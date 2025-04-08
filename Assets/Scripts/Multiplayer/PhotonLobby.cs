@@ -91,7 +91,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         Debug.Log("We are now in a room");
         startPanel.gameObject.SetActive(false);
-        PhotonNetwork.LoadLevel("Test");
+        PhotonNetwork.LoadLevel("GameJolenPC");
         gameManager.gameObject.SetActive(true);
     }
 

@@ -12,14 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/LoginScene.unity
     guid: ad920fb763babf54abb11f386e00c85f
   - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: f72719145958c864f83b6ad106005df4
+  - enabled: 1
     path: Assets/Scenes/DeleteUser.unity
     guid: 22ab0d839fb63854dad39c0bf0776e2c
   - enabled: 1
     path: Assets/Scenes/ForgotAccount.unity
     guid: 562a28f7054d66841858d9614a93a627
   - enabled: 1
-    path: Assets/Scenes/GamePogs.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/GameJolenPC.unity
+    guid: 003b1577813425b4bb728db7432696e9
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: a37287ddcea2a644b80f024dcdf20747, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
