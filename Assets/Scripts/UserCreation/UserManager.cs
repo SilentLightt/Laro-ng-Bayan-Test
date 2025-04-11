@@ -17,7 +17,7 @@ public class UserManager : MonoBehaviour
     public string loginSceneName = "LoginScene";
     public string registerSceneName = "RegisterScene";
     public string mainSceneName = "MenuScene";
-
+    public string lobbyname = "Lobby";
     public void Update()
     {
         DeleteMenuShorcut();
@@ -61,10 +61,11 @@ public class UserManager : MonoBehaviour
 
     public void LoginUser()
     {
-        if (!InputValidator.ValidateField(emailInput) ||
+        if (!InputValidator.ValidateField(nameInput) ||
+            !InputValidator.ValidateField(emailInput) ||
             !InputValidator.ValidateField(passwordInput))
         {
-            ShowNotification("Email and Password cannot be empty!");
+            ShowNotification("userName, Email, and Password cannot be empty!");
             return;
         }
 
@@ -76,9 +77,22 @@ public class UserManager : MonoBehaviour
                 {
                     if (user.password == passwordInput.text)
                     {
-                        ShowNotification("Login successful! User ID: " + user.id);
-                        SceneManager.LoadScene(mainSceneName);
-                        return;
+                        if (user.name == nameInput.text)
+                        {
+                            ShowNotification("Login successful! User ID: " + user.id);
+
+                            // Store the user name in PlayerPrefs
+                            PlayerPrefs.SetString("UserName", user.name);
+                            PlayerPrefs.Save();
+
+                            SceneManager.LoadScene(mainSceneName);
+                            return;
+                        }
+                        else
+                        {
+                            ShowNotification("Incorrect username.");
+                            return;
+                        }
                     }
                     else
                     {
@@ -90,6 +104,80 @@ public class UserManager : MonoBehaviour
             ShowNotification("Email not found.");
         }, error => ShowNotification("Login failed: " + error));
     }
+
+
+    //public void LoginUser()
+    //{
+    //    if (!InputValidator.ValidateField(nameInput) ||
+    //        !InputValidator.ValidateField(emailInput) ||
+    //        !InputValidator.ValidateField(passwordInput))
+    //    {
+    //        ShowNotification("userName, Email, and Password cannot be empty!");
+    //        return;
+    //    }
+
+    //    apiService.GetUsers(users =>
+    //    {
+    //        foreach (User user in users)
+    //        {
+    //            if (user.email == emailInput.text)
+    //            {
+    //                if (user.password == passwordInput.text)
+    //                {
+    //                    if (user.name == nameInput.text)
+    //                    {
+    //                        ShowNotification("Login successful! User ID: " + user.id);
+    //                        SceneManager.LoadScene(mainSceneName);
+    //                        return;
+    //                    }
+    //                    else
+    //                    {
+    //                        ShowNotification("Incorrect username.");
+    //                        return;
+    //                    }
+    //                }
+    //                else
+    //                {
+    //                    ShowNotification("Incorrect password.");
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //        ShowNotification("Email not found.");
+    //    }, error => ShowNotification("Login failed: " + error));
+    //}
+
+    //public void LoginUser()
+    //{
+    //    if (!InputValidator.ValidateField(emailInput) ||
+    //        !InputValidator.ValidateField(passwordInput))
+    //    {
+    //        ShowNotification("Email and Password cannot be empty!");
+    //        return;
+    //    }
+
+    //    apiService.GetUsers(users =>
+    //    {
+    //        foreach (User user in users)
+    //        {
+    //            if (user.email == emailInput.text)
+    //            {
+    //                if (user.password == passwordInput.text)
+    //                {
+    //                    ShowNotification("Login successful! User ID: " + user.id);
+    //                    SceneManager.LoadScene(mainSceneName);
+    //                    return;
+    //                }
+    //                else
+    //                {
+    //                    ShowNotification("Incorrect password.");
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //        ShowNotification("Email not found.");
+    //    }, error => ShowNotification("Login failed: " + error));
+    //}
 
     public void DeleteUserFromInput()
     {
