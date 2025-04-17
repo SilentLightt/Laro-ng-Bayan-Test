@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class CoinFlipManager : MonoBehaviour
 {
     [SerializeField] private Button flipButton;
@@ -12,12 +12,25 @@ public class CoinFlipManager : MonoBehaviour
     [SerializeField] private CoinResult coinResultManager;
     [SerializeField] private Rigidbody coinRigidbody;
     [SerializeField] private GameObject coinCamera;
+    [SerializeField] private GameObject coin;
+    //private void Awake()
+    //{
 
+    //}
     private void Start()
     {
         flipButton.onClick.AddListener(FlipCoinButton);
         resultText.text = "Flip the coin to decide first turn!";
         Coinbehavior  = FindFirstObjectByType<coinbehavior>();
+        coinResultManager = FindFirstObjectByType<CoinResult>();
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+        }
+
     }
     private void FlipCoinButton()
     {
@@ -37,6 +50,7 @@ public class CoinFlipManager : MonoBehaviour
 
         // Disable the coin camera once the coin flip is completed
         coinCamera.SetActive(false);
+        coin.SetActive(false);
 
         // Get the result and update the UI
         string result = coinResultManager.GetResult();

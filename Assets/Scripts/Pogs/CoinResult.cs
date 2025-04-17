@@ -8,6 +8,18 @@ public class CoinResult : MonoBehaviour
     public GameObject Tails;
     private void OnTriggerStay(Collider other)
     {
+        //if (!resultDetermined)
+        //{
+        //    if (other.gameObject == Heads)
+        //    {
+        //        coinResult = "Heads";
+        //    }
+        //    else if (other.gameObject == Tails)
+        //    {
+        //        coinResult = "Tails";
+        //    }
+        //    resultDetermined = true;
+        //}
         if (!resultDetermined)
         {
             if (Heads)
@@ -21,6 +33,21 @@ public class CoinResult : MonoBehaviour
             resultDetermined = true;
         }
     }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!resultDetermined)
+    //    {
+    //        if (other.gameObject == Heads)
+    //        {
+    //            coinResult = "Heads";
+    //        }
+    //        else if (other.gameObject == Tails)
+    //        {
+    //            coinResult = "Tails";
+    //        }
+    //        resultDetermined = true;
+    //    }
+    //}
     public string GetResult()
     {
         return coinResult;
