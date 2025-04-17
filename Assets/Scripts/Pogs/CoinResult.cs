@@ -6,15 +6,16 @@ public class CoinResult : MonoBehaviour
     private string coinResult = "Undetermined";
     public GameObject Heads;
     public GameObject Tails;
+
     private void OnTriggerStay(Collider other)
     {
         //if (!resultDetermined)
         //{
-        //    if (other.gameObject == Heads)
+        //    if (Heads)
         //    {
         //        coinResult = "Heads";
         //    }
-        //    else if (other.gameObject == Tails)
+        //    else if (Tails)
         //    {
         //        coinResult = "Tails";
         //    }
@@ -22,32 +23,21 @@ public class CoinResult : MonoBehaviour
         //}
         if (!resultDetermined)
         {
-            if (Heads)
+            if (other.gameObject == Heads)
             {
                 coinResult = "Heads";
+                Debug.Log("" + coinResult);
+
             }
-            else if (Tails)
+            else if (other.gameObject == Tails)
             {
                 coinResult = "Tails";
+                Debug.Log("" + coinResult);
             }
             resultDetermined = true;
         }
     }
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!resultDetermined)
-    //    {
-    //        if (other.gameObject == Heads)
-    //        {
-    //            coinResult = "Heads";
-    //        }
-    //        else if (other.gameObject == Tails)
-    //        {
-    //            coinResult = "Tails";
-    //        }
-    //        resultDetermined = true;
-    //    }
-    //}
+
     public string GetResult()
     {
         return coinResult;

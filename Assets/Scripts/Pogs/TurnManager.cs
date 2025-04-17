@@ -125,7 +125,6 @@ public class TurnManager : MonoBehaviour
 
     private void UpdateTurnUI()
     {
-        // Update the turn display to reflect the current player's turn
         if (isPlayer1Turn)
         {
             turnText.text = "Player 1's Turn";
@@ -138,7 +137,6 @@ public class TurnManager : MonoBehaviour
 
     private void UpdateTimeText()
     {
-        // Update the countdown timer UI to reflect the time remaining
         timeText.text = "Time: " + Mathf.Ceil(turnTimeRemaining).ToString() + "s";
     }
 }

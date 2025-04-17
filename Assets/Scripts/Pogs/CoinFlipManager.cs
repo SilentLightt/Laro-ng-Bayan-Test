@@ -13,10 +13,7 @@ public class CoinFlipManager : MonoBehaviour
     [SerializeField] private Rigidbody coinRigidbody;
     [SerializeField] private GameObject coinCamera;
     [SerializeField] private GameObject coin;
-    //private void Awake()
-    //{
 
-    //}
     private void Start()
     {
         flipButton.onClick.AddListener(FlipCoinButton);
@@ -28,7 +25,7 @@ public class CoinFlipManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }
@@ -42,17 +39,14 @@ public class CoinFlipManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        // Wait until the coin stops moving
         while (coinRigidbody.linearVelocity.magnitude > 0.1f || coinRigidbody.angularVelocity.magnitude > 0.1f)
         {
             yield return null;
         }
 
-        // Disable the coin camera once the coin flip is completed
         coinCamera.SetActive(false);
         coin.SetActive(false);
 
-        // Get the result and update the UI
         string result = coinResultManager.GetResult();
 
         if (string.IsNullOrEmpty(result) || result == "Undetermined")
